@@ -1,0 +1,3 @@
+displayName = Compatibility++
+author = GrandP&#232;reDansLeSirop
+version = 0.1
