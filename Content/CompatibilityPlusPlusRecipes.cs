@@ -8,6 +8,7 @@ namespace CompatibilityPlusPlus.Content
 {
     public class CompatibilityPlusPlusRecipes : ModSystem
     {
+        #region Banner Groups
         private static RecipeGroup AquaticDepthsBannersGroup;
         private static RecipeGroup CorruptionBannersGroup;
         private static RecipeGroup CrimsonBannersGroup;
@@ -16,9 +17,11 @@ namespace CompatibilityPlusPlus.Content
         private static RecipeGroup JungleBannersGroup;
         private static RecipeGroup SnowBannersGroup;
         private static RecipeGroup UnderworldBannersGroup;
+        #endregion
 
         public override void Unload()
         {
+            #region Banner Groups
             AquaticDepthsBannersGroup = null;
             CorruptionBannersGroup = null;
             CrimsonBannersGroup = null;
@@ -27,6 +30,7 @@ namespace CompatibilityPlusPlus.Content
             JungleBannersGroup = null;
             SnowBannersGroup = null;
             UnderworldBannersGroup = null;
+            #endregion
         }
 
         public override void AddRecipes()
@@ -35,6 +39,7 @@ namespace CompatibilityPlusPlus.Content
             if (CompatibilityPlusPlus.FargosMutantMod != null)
             {
                 #region Vanilla
+                #region Biome Keys
                 Recipe.Create(ItemID.CorruptionKey)
                     .AddRecipeGroup(CorruptionBannersGroup, 10)
                     .AddTile(TileID.Solidifier)
@@ -71,10 +76,12 @@ namespace CompatibilityPlusPlus.Content
                     .AddCondition(Condition.Hardmode)
                     .Register();
                 #endregion
+                #endregion
                 #region Thorium Mod
                 if (CompatibilityPlusPlus.ThoriumMod != null)
                 {
                     Mod thoriumMod = CompatibilityPlusPlus.ThoriumMod;
+                    #region Biome Keys
                     if (thoriumMod.TryFind("AquaticDepthsBiomeKey", out ModItem aquaticDepthsBiomeKey)) {
                         Recipe.Create(aquaticDepthsBiomeKey.Type)
                             .AddRecipeGroup(AquaticDepthsBannersGroup, 10)
@@ -107,6 +114,7 @@ namespace CompatibilityPlusPlus.Content
                                 .Register();
                         }
                     }
+                    #endregion
                 }
                 #endregion
             }
@@ -115,6 +123,7 @@ namespace CompatibilityPlusPlus.Content
 
         public override void AddRecipeGroups()
         {
+            #region Banner Groups
             List<int> aquaticDepthsBanners = [];
             List<int> corruptionBanners = [];
             List<int> crimsonBanners = [];
@@ -123,6 +132,7 @@ namespace CompatibilityPlusPlus.Content
             List<int> jungleBanners = [];
             List<int> snowBanners = [];
             List<int> underworldBanners = [];
+            #endregion
 
             #region Thorium Mod
             #region Aquatic Depths Banners
@@ -203,6 +213,7 @@ namespace CompatibilityPlusPlus.Content
             #endregion
             #endregion
 
+            #region Banner Groups
             RegisterGroup(ref AquaticDepthsBannersGroup, "CompatibilityPlusPlus:AquaticDepthsBanners", "Mods.CompatibilityPlusPlus.Biomes.ThoriumMod.AquaticDepths",
                 [
                     .. aquaticDepthsBanners
@@ -335,6 +346,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.RedDevilBanner,
                     .. underworldBanners
                 ]);
+            #endregion
         }
 
         private static void AddItemFromExternalModToGroup(Mod mod, string itemName, List<int> group)
@@ -363,6 +375,7 @@ namespace CompatibilityPlusPlus.Content
                 #region Fargo's Mutant Mod
                 if (CompatibilityPlusPlus.FargosMutantMod != null)
                 {
+                    #region Biome Keys
                     // Corruption Key
                     if (recipe.HasResult(ItemID.CorruptionKey) && !recipe.HasRecipeGroup(CorruptionBannersGroup))
                     {
@@ -398,6 +411,7 @@ namespace CompatibilityPlusPlus.Content
                     {
                         recipe.DisableRecipe();
                     }
+                    #endregion
                 }
                 #endregion
             }
