@@ -1,12 +1,4 @@
-Recipes: {
-	Groups: {
-		AquaticDepthsBanners: Any Aquatic Depths Banner
-		CorruptionBanners: Any Corruption Banner
-		CrimsonBanners: Any Crimson Banner
-		DesertBanners: Any Desert Banner
-		HallowedBanners: Any Hallowed Banner
-		JungleBanners: Any Jungle Banner
-		SnowBanners: Any Snow Banner
-		UnderworldBanners: Any Underworld Banner
-	}
+Biomes: {
+	ThoriumMod.AquaticDepths: Aquatic Depths
+	Vanilla.Underworld: Underworld
 }

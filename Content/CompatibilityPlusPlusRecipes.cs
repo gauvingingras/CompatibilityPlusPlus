@@ -203,11 +203,11 @@ namespace CompatibilityPlusPlus.Content
             #endregion
             #endregion
 
-            RegisterGroup(ref AquaticDepthsBannersGroup, "CompatibilityPlusPlus:AquaticDepthsBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.AquaticDepthsBanners"),
+            RegisterGroup(ref AquaticDepthsBannersGroup, "CompatibilityPlusPlus:AquaticDepthsBanners", "Mods.CompatibilityPlusPlus.Biomes.ThoriumMod.AquaticDepths",
                 [
                     .. aquaticDepthsBanners
                 ]);
-            RegisterGroup(ref CorruptionBannersGroup, "CompatibilityPlusPlus:CorruptionBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.CorruptionBanners"),
+            RegisterGroup(ref CorruptionBannersGroup, "CompatibilityPlusPlus:CorruptionBanners", "CLI.Corrupt",
                 [
                     ItemID.EaterofSoulsBanner,
                     ItemID.CorruptGoldfishBanner,
@@ -222,7 +222,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.BigMimicCorruptionBanner,
                     .. corruptionBanners
                 ]);
-            RegisterGroup(ref CrimsonBannersGroup, "CompatibilityPlusPlus:CrimsonBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.CrimsonBanners"),
+            RegisterGroup(ref CrimsonBannersGroup, "CompatibilityPlusPlus:CrimsonBanners", "CLI.Crimson",
                 [
                     ItemID.BloodCrawlerBanner,
                     ItemID.CrimsonGoldfishBanner,
@@ -239,7 +239,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.BigMimicCrimsonBanner,
                     .. crimsonBanners
                 ]);
-            RegisterGroup(ref DesertBannersGroup, "CompatibilityPlusPlus:DesertBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.DesertBanners"),
+            RegisterGroup(ref DesertBannersGroup, "CompatibilityPlusPlus:DesertBanners", "RandomWorldName_Location.Desert",
                 [
                     ItemID.VultureBanner,
                     ItemID.AntlionBanner,
@@ -266,7 +266,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.SandsharkCrimsonBanner,
                     ..desertBanners
                 ]);
-            RegisterGroup(ref HallowedBannersGroup, "CompatibilityPlusPlus:HallowedBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.HallowedBanners"),
+            RegisterGroup(ref HallowedBannersGroup, "CompatibilityPlusPlus:HallowedBanners", "RandomWorldName_Adjective.Hallowed",
                 [
                     ItemID.PixieBanner,
                     ItemID.UnicornBanner,
@@ -280,7 +280,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.BigMimicHallowBanner,
                     .. hallowedBanners
                 ]);
-            RegisterGroup(ref JungleBannersGroup, "CompatibilityPlusPlus:JungleBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.JungleBanners"),
+            RegisterGroup(ref JungleBannersGroup, "CompatibilityPlusPlus:JungleBanners", "RandomWorldName_Location.Jungle",
                 [
                     ItemID.JungleSlimeBanner,
                     ItemID.JungleBatBanner,
@@ -302,7 +302,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.MothBanner,
                     .. jungleBanners
                 ]);
-            RegisterGroup(ref SnowBannersGroup, "CompatibilityPlusPlus:SnowBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.SnowBanners"),
+            RegisterGroup(ref SnowBannersGroup, "CompatibilityPlusPlus:SnowBanners", "RandomWorldName_Noun.Snow",
                 [
                     ItemID.IceSlimeBanner,
                     ItemID.ZombieEskimoBanner,
@@ -323,7 +323,7 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.PigronBanner,
                     .. snowBanners
                 ]);
-            RegisterGroup(ref UnderworldBannersGroup, "CompatibilityPlusPlus:UnderworldBanners", Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.UnderworldBanners"),
+            RegisterGroup(ref UnderworldBannersGroup, "CompatibilityPlusPlus:UnderworldBanners", "Mods.CompatibilityPlusPlus.Biomes.Vanilla.Underworld",
                 [
                     ItemID.HellbatBanner,
                     ItemID.LavaSlimeBanner,
@@ -350,7 +350,7 @@ namespace CompatibilityPlusPlus.Content
 
         private static void RegisterGroup(ref RecipeGroup group, string groupName, string text, int[] items)
         {
-            group = new RecipeGroup(() => text, items);
+            group = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Language.GetTextValue(text)} {Language.GetTextValue("MapObject.Banner")}", items);
             RecipeGroup.RegisterGroup(groupName, group);
         }
 
