@@ -8,14 +8,21 @@ namespace CompatibilityPlusPlus.Content
 {
     public class CompatibilityPlusPlusRecipes : ModSystem
     {
-        private const string DesertBannersGroup = "CompatibilityPlusPlus:DesertBanners";
-        private const string SnowBannersGroup = "CompatibilityPlusPlus:SnowBanners";
-        private const string UnderworldBannersGroup = "CompatibilityPlusPlus:UnderworldBanners";
+        private static RecipeGroup DesertBannersGroup;
+        private static RecipeGroup SnowBannersGroup;
+        private static RecipeGroup UnderworldBannersGroup;
+
+        public override void Unload()
+        {
+            DesertBannersGroup = null;
+            SnowBannersGroup = null;
+            UnderworldBannersGroup = null;
+        }
 
         public override void AddRecipes()
         {
             #region Fargo's Mutant Mod
-            if (CompatibilityPlusPlus.fargosMutantMod != null)
+            if (CompatibilityPlusPlus.FargosMutantMod != null)
             {
                 #region Vanilla
                 Recipe.Create(ItemID.DungeonDesertKey)
@@ -32,9 +39,9 @@ namespace CompatibilityPlusPlus.Content
                 #endregion
 
                 #region Thorium Mod
-                if (CompatibilityPlusPlus.thoriumMod != null)
+                if (CompatibilityPlusPlus.ThoriumMod != null)
                 {
-                    Mod thoriumMod = CompatibilityPlusPlus.thoriumMod;
+                    Mod thoriumMod = CompatibilityPlusPlus.ThoriumMod;
                     if (thoriumMod.TryFind("UnderworldBiomeKey", out ModItem underworldBiomeKey))
                     {
                         Recipe.Create(underworldBiomeKey.Type)
@@ -56,9 +63,9 @@ namespace CompatibilityPlusPlus.Content
             List<int> underworldBanners = [];
 
             #region Thorium Mod
-            if (CompatibilityPlusPlus.thoriumMod != null)
+            if (CompatibilityPlusPlus.ThoriumMod != null)
             {
-                Mod thoriumMod = CompatibilityPlusPlus.thoriumMod;
+                Mod thoriumMod = CompatibilityPlusPlus.ThoriumMod;
                 #region Snow Banners
                 if (thoriumMod.TryFind("SnowballBanner", out ModItem snowballBanner))
                 {
@@ -114,7 +121,7 @@ namespace CompatibilityPlusPlus.Content
             }
             #endregion
 
-            RecipeGroup.RegisterGroup(DesertBannersGroup, new RecipeGroup(() => Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.DesertBanners"),
+            DesertBannersGroup = new RecipeGroup(() => Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.DesertBanners"),
                 [
                     ItemID.VultureBanner,
                     ItemID.AntlionBanner,
@@ -140,9 +147,10 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.SandsharkCorruptBanner,
                     ItemID.SandsharkCrimsonBanner,
                     ..desertBanners
-                ]));
+                ]);
+            RecipeGroup.RegisterGroup("CompatibilityPlusPlus:DesertBanners", DesertBannersGroup);
 
-            RecipeGroup.RegisterGroup(SnowBannersGroup, new RecipeGroup(() => Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.SnowBanners"),
+            SnowBannersGroup = new RecipeGroup(() => Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.SnowBanners"),
                 [
                     ItemID.IceSlimeBanner,
                     ItemID.ZombieEskimoBanner,
@@ -152,9 +160,10 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.WolfBanner,
                     ItemID.IceGolemBanner,
                     .. snowBanners
-                ]));
+                ]);
+            RecipeGroup.RegisterGroup("CompatibilityPlusPlus:SnowBanners", SnowBannersGroup);
 
-            RecipeGroup.RegisterGroup(UnderworldBannersGroup, new RecipeGroup(() => Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.UnderworldBanners"),
+            UnderworldBannersGroup = new RecipeGroup(() => Language.GetTextValue("Mods.CompatibilityPlusPlus.Recipes.Groups.UnderworldBanners"),
                 [
                     ItemID.HellbatBanner,
                     ItemID.LavaSlimeBanner,
@@ -165,7 +174,8 @@ namespace CompatibilityPlusPlus.Content
                     ItemID.LavaBatBanner,
                     ItemID.RedDevilBanner,
                     .. underworldBanners
-                ]));
+                ]);
+            RecipeGroup.RegisterGroup("CompatibilityPlusPlus:UnderworldBanners", UnderworldBannersGroup);
         }
 
         public override void PostAddRecipes()
