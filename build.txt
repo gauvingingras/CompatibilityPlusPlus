@@ -1,3 +1,4 @@
 displayName = Compatibility++
-author = GrandP&#232;reDansLeSirop
+author = GrandPereDansLeSirop
 version = 0.1
+modReferences = Fargowiltas, ThoriumMod
